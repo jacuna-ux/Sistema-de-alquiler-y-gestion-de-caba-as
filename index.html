@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cabañas Anda Collo - Plantilla de Ejemplo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- BARRA SUPERIOR PARA CAMBIAR ENTRE VISTA CLIENTE Y VISTA ENCARGADO -->
+    <header class="barra_superior_rol">
+        <div class="contenedor_selector_rol">
+            <span>Vista de Ejemplo:</span>
+            <button id="boton_modo_cliente" class="boton_rol activo" onclick="activarModo('cliente')">Modo Cliente</button>
+            <button id="boton_modo_encargado" class="boton_rol" onclick="activarModo('encargado')">Modo Encargado / Administrador</button>
+        </div>
+    </header>
+
+    <!-- ENCABEZADO DE LA PAGINA -->
+    <header class="encabezado_marca">
+        <div class="icono_logo">🏠🌲</div>
+        <h1 class="titulo_marca">Cabañas Anda Collo</h1>
+        <div class="icono_marca">☀️🌊</div>
+    </header>
+
+    <!-- NAVEGACION DE LA VISTA DE CLIENTE -->
+    <nav id="navegacion_cliente" class="barra_navegacion">
+        <ul class="lista_menu">
+            <li><button class="boton_menu activo" onclick="mostrarSeccion('cliente_seccion_inicio', this)">Inicio</button></li>
+            <li><button class="boton_menu" onclick="mostrarSeccion('cliente_seccion_cabanas', this)">Cabañas</button></li>
+            <li><button class="boton_menu" onclick="mostrarSeccion('cliente_seccion_mis_reservas', this)">Mis Reservas</button></li>
+            <li><button class="boton_menu" onclick="mostrarSeccion('cliente_seccion_mis_pagos', this)">Mis Pagos</button></li>
+            <li><button class="boton_menu" onclick="mostrarSeccion('cliente_seccion_contacto', this)">Contacto</button></li>
+        </ul>
+    </nav>
+
+    <!-- NAVEGACION DE LA VISTA DE ENCARGADO -->
+    <nav id="navegacion_encargado" class="barra_navegacion oculto">
+        <ul class="lista_menu">
+            <li><button class="boton_menu activo" onclick="mostrarSeccion('encargado_seccion_inicio', this)">Inicio</button></li>
+            <li><button class="boton_menu" onclick="mostrarSeccion('encargado_seccion_reservas', this)">Reservas (Sistema)</button></li>
+            <li><button class="boton_menu" onclick="mostrarSeccion('encargado_seccion_clientes', this)">Clientes</button></li>
+            <li><button class="boton_menu" onclick="mostrarSeccion('encargado_seccion_cabanas', this)">Cabañas</button></li>
+            <li><button class="boton_menu" onclick="mostrarSeccion('encargado_seccion_pagos', this)">Pagos (General)</button></li>
+            <li><button class="boton_menu" onclick="mostrarSeccion('encargado_seccion_reportes', this)">Reportes</button></li>
+        </ul>
+    </nav>
+    
+    <main class="contenedor_principal">
+
+        <!-- CLIENTE: INICIO -->
+        <section id="cliente_seccion_inicio" class="seccion_contenido activo">
+            <div class="encabezado_seccion">
+                <h2 class="titulo_seccion">Nuestras cabañas</h2>
+                <p class="descripcion_seccion">Disfrutá de la tranquilidad y la naturaleza en nuestras cabañas (Ejemplo de plantilla).</p>
+            </div>
+
+            <div class="grilla_cabanas">
+                <!-- Tarjeta Cabaña 1 -->
+                <div class="tarjeta_cabana">
+                    <div class="imagen_ejemplo">Imagen de Ejemplo</div>
+                    <div class="cuerpo_tarjeta">
+                        <h3 class="titulo_cabana">Cabaña 1</h3>
+                        <p class="texto_ejemplo">Descripción de ejemplo para la Cabaña 1.</p>
+                        <button class="boton_ver" onclick="abrirModalEjemplo('Cabaña 1', 'Descripción detallada de ejemplo para la Cabaña 1. Muestra de comodidades y características generales.')">Ver</button>
+                    </div>
+                </div>
+
+                <!-- Tarjeta Cabaña 2 -->
+                <div class="tarjeta_cabana">
+                    <div class="imagen_ejemplo">Imagen de Ejemplo</div>
+                    <div class="cuerpo_tarjeta">
+                        <h3 class="titulo_cabana">Cabaña 2</h3>
+                        <p class="texto_ejemplo">Descripción de ejemplo para la Cabaña 2.</p>
+                        <button class="boton_ver" onclick="abrirModalEjemplo('Cabaña 2', 'Descripción detallada de ejemplo para la Cabaña 2. Muestra de comodidades y características generales.')">Ver</button>
+                    </div>
+                </div>
+
+                <!-- Tarjeta Cabaña 3 -->
+                <div class="tarjeta_cabana">
+                    <div class="imagen_ejemplo">Imagen de Ejemplo</div>
+                    <div class="cuerpo_tarjeta">
+                        <h3 class="titulo_cabana">Cabaña 3</h3>
+                        <p class="texto_ejemplo">Descripción de ejemplo para la Cabaña 3.</p>
+                        <button class="boton_ver" onclick="abrirModalEjemplo('Cabaña 3', 'Descripción detallada de ejemplo para la Cabaña 3. Muestra de comodidades y características generales.')">Ver</button>
+                    </div>
+                </div>
+
+                <!-- Tarjeta Cabaña 4 -->
+                <div class="tarjeta_cabana">
+                    <div class="imagen_ejemplo">Imagen de Ejemplo</div>
+                    <div class="cuerpo_tarjeta">
+                        <h3 class="titulo_cabana">Cabaña 4</h3>
+                        <p class="texto_ejemplo">Descripción de ejemplo para la Cabaña 4.</p>
+                        <button class="boton_ver" onclick="abrirModalEjemplo('Cabaña 4', 'Descripción detallada de ejemplo para la Cabaña 4. Muestra de comodidades y características generales.')">Ver</button>
+                    </div>
+                </div>
+
+                <!-- Tarjeta Cabaña 5 -->
+                <div class="tarjeta_cabana">
+                    <div class="imagen_ejemplo">Imagen de Ejemplo</div>
+                    <div class="cuerpo_tarjeta">
+                        <h3 class="titulo_cabana">Cabaña 5</h3>
+                        <p class="texto_ejemplo">Descripción de ejemplo para la Cabaña 5.</p>
+                        <button class="boton_ver" onclick="abrirModalEjemplo('Cabaña 5', 'Descripción detallada de ejemplo para la Cabaña 5. Muestra de comodidades y características generales.')">Ver</button>
+                    </div>
+                </div>
+
+                <!-- Tarjeta Cabaña 6 -->
+                <div class="tarjeta_cabana">
+                    <div class="imagen_ejemplo">Imagen de Ejemplo</div>
+                    <div class="cuerpo_tarjeta">
+                        <h3 class="titulo_cabana">Cabaña 6</h3>
+                        <p class="texto_ejemplo">Descripción de ejemplo para la Cabaña 6.</p>
+                        <button class="boton_ver" onclick="abrirModalEjemplo('Cabaña 6', 'Descripción detallada de ejemplo para la Cabaña 6. Muestra de comodidades y características generales.')">Ver</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CLIENTE: CABAÑAS -->
+        <section id="cliente_seccion_cabanas" class="seccion_contenido oculto">
+            <div class="encabezado_seccion">
+                <h2 class="titulo_seccion">Catálogo de Cabañas (Ejemplo)</h2>
+                <p class="descripcion_seccion">Vista completa de unidades disponibles en el sistema.</p>
+            </div>
+            <div class="caja_ejemplo">
+                <p class="texto_ejemplo">Muestra conceptual del catálogo para el cliente.</p>
+            </div>
+        </section>
+
+        <!-- CLIENTE: MIS RESERVAS -->
+        <section id="cliente_seccion_mis_reservas" class="seccion_contenido oculto">
+            <div class="encabezado_seccion">
+                <h2 class="titulo_seccion">Mis Reservas</h2>
+                <p class="descripcion_seccion">Muestra de las reservas personales del cliente.</p>
+            </div>
+            <div class="caja_tabla">
+                <table class="tabla_ejemplo">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Cabaña</th>
+                            <th>Ingreso</th>
+                            <th>Salida</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#001</td>
+                            <td>Cabaña 1</td>
+                            <td>DD/MM/AAAA</td>
+                            <td>DD/MM/AAAA</td>
+                            <td><span class="insignia insignia_verde">Estado de Ejemplo</span></td>
+                        </tr>
+                        <tr>
+                            <td>#002</td>
+                            <td>Cabaña 2</td>
+                            <td>DD/MM/AAAA</td>
+                            <td>DD/MM/AAAA</td>
+                            <td><span class="insignia insignia_amarilla">Estado de Ejemplo</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- CLIENTE: MIS PAGOS -->
+        <section id="cliente_seccion_mis_pagos" class="seccion_contenido oculto">
+            <div class="encabezado_seccion">
+                <h2 class="titulo_seccion">Mis Pagos</h2>
+                <p class="descripcion_seccion">Muestra de comprobantes y estado de pagos personales del cliente.</p>
+            </div>
+            <div class="caja_tabla">
+                <table class="tabla_ejemplo">
+                    <thead>
+                        <tr>
+                            <th>Nº Comprobante</th>
+                            <th>Concepto</th>
+                            <th>Monto</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#PAGO-01</td>
+                            <td>Ejemplo de pago de reserva</td>
+                            <td>$ XXX.XXX</td>
+                            <td>DD/MM/AAAA</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- CLIENTE: CONTACTO -->
+        <section id="cliente_seccion_contacto" class="seccion_contenido oculto">
+            <div class="encabezado_seccion">
+                <h2 class="titulo_seccion">Contacto</h2>
+                <p class="descripcion_seccion">Formulario de ejemplo de consulta.</p>
+            </div>
+            <div class="caja_formulario">
+                <div class="campo_grupo">
+                    <label>Nombre de ejemplo:</label>
+                    <input type="text" placeholder="Tu nombre..." class="campo_entrada">
+                </div>
+                <div class="campo_grupo">
+                    <label>Correo de ejemplo:</label>
+                    <input type="email" placeholder="correo@ejemplo.com" class="campo_entrada">
+                </div>
+                <div class="campo_grupo">
+                    <label>Mensaje de ejemplo:</label>
+                    <textarea placeholder="Mensaje de ejemplo..." class="campo_textarea"></textarea>
+                </div>
+                <button class="boton_primario" onclick="alert('Formulario de ejemplo enviado.')">Enviar Mensaje</button>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SECCIONES VISTA ENCARGADO / ADMINISTRADOR
+        =========================================== -->
+
+        <!-- ENCARGADO: INICIO -->
+        <section id="encargado_seccion_inicio" class="seccion_contenido oculto">
+            <div class="encabezado_seccion">
+                <h2 class="titulo_seccion">Panel de Control (Encargado)</h2>
+                <p class="descripcion_seccion">Indicadores generales del complejo (Ejemplo ilustrativo).</p>
+            </div>
+            <div class="grilla_metricas">
+                <div class="tarjeta_metrica">
+                    <h4>Cabañas Ocupadas</h4>
+                    <p class="valor_metrica">X / X</p>
+                </div>
+                <div class="tarjeta_metrica">
+                    <h4>Reservas Totales</h4>
+                    <p class="valor_metrica">XX</p>
+                </div>
+                <div class="tarjeta_metrica">
+                    <h4>Pagos Registrados</h4>
+                    <p class="valor_metrica">$ XXX.XXX</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ENCARGADO: RESERVAS -->
+        <section id="encargado_seccion_reservas" class="seccion_contenido oculto">
+            <div class="encabezado_seccion">
+                <h2 class="titulo_seccion">Todas las Reservas del Sistema</h2>
+                <p class="descripcion_seccion">Vista de administración general de reservas de todos los clientes.</p>
+            </div>
+            <div class="caja_tabla">
+                <table class="tabla_ejemplo">
+                    <thead>
+                        <tr>
+                            <th>ID Reserva</th>
+                            <th>Cliente</th>
+                            <th>Cabaña</th>
+                            <th>Ingreso</th>
+                            <th>Salida</th>
+                            <th>Estado General</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#RES-01</td>
+                            <td>Cliente A</td>
+                            <td>Cabaña 1</td>
+                            <td>DD/MM/AAAA</td>
+                            <td>DD/MM/AAAA</td>
+                            <td><span class="insignia insignia_verde">Confirmada</span></td>
+                        </tr>
+                        <tr>
+                            <td>#RES-02</td>
+                            <td>Cliente B</td>
+                            <td>Cabaña 3</td>
+                            <td>DD/MM/AAAA</td>
+                            <td>DD/MM/AAAA</td>
+                            <td><span class="insignia insignia_amarilla">Pendiente</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ENCARGADO: CLIENTES -->
+        <section id="encargado_seccion_clientes" class="seccion_contenido oculto">
+            <div class="encabezado_seccion">
+                <h2 class="titulo_seccion">Listado de Clientes</h2>
+                <p class="descripcion_seccion">Base de datos de pasajeros registrados en la plataforma.</p>
+            </div>
+            <div class="caja_tabla">
+                <table class="tabla_ejemplo">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Teléfono</th>
+                            <th>Email</th>
+                            <th>Reservas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Cliente A</td>
+                            <td>0000-0000</td>
+                            <td>clienteA@ejemplo.com</td>
+                            <td>X</td>
+                        </tr>
+                        <tr>
+                            <td>Cliente B</td>
+                            <td>0000-0000</td>
+                            <td>clienteB@ejemplo.com</td>
+                            <td>X</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ENCARGADO: CABAÑAS -->
+        <section id="encargado_seccion_cabanas" class="seccion_contenido oculto">
+            <div class="encabezado_seccion">
+                <h2 class="titulo_seccion">Administración de Cabañas</h2>
+                <p class="descripcion_seccion">Estado operativo y control general de cada unidad.</p>
+            </div>
+            <div class="caja_tabla">
+                <table class="tabla_ejemplo">
+                    <thead>
+                        <tr>
+                            <th>Cabaña</th>
+                            <th>Capacidad</th>
+                            <th>Estado Actual</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Cabaña 1</td>
+                            <td>X Personas</td>
+                            <td><span class="insignia insignia_verde">Disponible</span></td>
+                        </tr>
+                        <tr>
+                            <td>Cabaña 2</td>
+                            <td>X Personas</td>
+                            <td><span class="insignia insignia_roja">Ocupada</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ENCARGADO: PAGOS -->
+        <section id="encargado_seccion_pagos" class="seccion_contenido oculto">
+            <div class="encabezado_seccion">
+                <h2 class="titulo_seccion">Control General de Pagos</h2>
+                <p class="descripcion_seccion">Registro de ingresos e historial contable del complejo.</p>
+            </div>
+            <div class="caja_tabla">
+                <table class="tabla_ejemplo">
+                    <thead>
+                        <tr>
+                            <th>ID Pago</th>
+                            <th>Reserva</th>
+                            <th>Cliente</th>
+                            <th>Monto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#PAG-001</td>
+                            <td>#RES-01</td>
+                            <td>Cliente A</td>
+                            <td>$ XXX.XXX</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ENCARGADO: REPORTES -->
+        <section id="encargado_seccion_reportes" class="seccion_contenido oculto">
+            <div class="encabezado_seccion">
+                <h2 class="titulo_seccion">Reportes y Estadísticas</h2>
+                <p class="descripcion_seccion">Espacio reservado para métricas del sistema.</p>
+            </div>
+            <div class="caja_ejemplo">
+                <p class="texto_ejemplo">Sección de reportes de ejemplo.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="pie_pagina">
+        <p>Cabañas Anda Collo · Pehuen Co</p>
+    </footer>
+
+    <div id="modal_ejemplo" class="modal_fondo oculto">
+        <div class="modal_caja">
+            <button class="modal_cerrar" onclick="cerrarModalEjemplo()">&times;</button>
+            <h3 id="modal_titulo" class="modal_titulo">Título de Ejemplo</h3>
+            <div class="imagen_ejemplo_modal">Imagen de Ejemplo</div>
+            <p id="modal_descripcion" class="modal_descripcion_texto">Descripción de ejemplo.</p>
+            <div class="modal_acciones">
+                <button class="boton_primario" onclick="ejecutarReservaEjemplo()">Reservar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- script de ejemplo y prueba-->
+    <script>
+        function activarModo(modo) {
+            const btnCliente = document.getElementById('boton_modo_cliente');
+            const btnEncargado = document.getElementById('boton_modo_encargado');
+            const navCliente = document.getElementById('navegacion_cliente');
+            const navEncargado = document.getElementById('navegacion_encargado');
+
+            if (modo === 'cliente') {
+                btnCliente.classList.add('activo');
+                btnEncargado.classList.remove('activo');
+                navCliente.classList.remove('oculto');
+                navEncargado.classList.add('oculto');
+                mostrarSeccion('cliente_seccion_inicio', navCliente.querySelector('.boton_menu'));
+            } else {
+                btnEncargado.classList.add('activo');
+                btnCliente.classList.remove('activo');
+                navEncargado.classList.remove('oculto');
+                navCliente.classList.add('oculto');
+                mostrarSeccion('encargado_seccion_inicio', navEncargado.querySelector('.boton_menu'));
+            }
+        }
+
+        function mostrarSeccion(idSeccion, botonPresionado) {
+            const secciones = document.querySelectorAll('.seccion_contenido');
+            secciones.forEach(sec => sec.classList.add('oculto'));
+            secciones.forEach(sec => sec.classList.remove('activo'));
+
+            const seccionDestino = document.getElementById(idSeccion);
+            if (seccionDestino) {
+                seccionDestino.classList.remove('oculto');
+                seccionDestino.classList.add('activo');
+            }
+
+            const menuPadre = botonPresionado.closest('.barra_navegacion');
+            const botones = menuPadre.querySelectorAll('.boton_menu');
+            botones.forEach(btn => btn.classList.remove('activo'));
+            botonPresionado.classList.add('activo');
+        }
+
+        function abrirModalEjemplo(titulo, descripcion) {
+            document.getElementById('modal_titulo').innerText = titulo;
+            document.getElementById('modal_descripcion').innerText = descripcion;
+            document.getElementById('modal_ejemplo').classList.remove('oculto');
+        }
+
+        function cerrarModalEjemplo() {
+            document.getElementById('modal_ejemplo').classList.add('oculto');
+        }
+
+        function ejecutarReservaEjemplo() {
+            alert('Acción de reserva de ejemplo (Sin funcionalidad real).');
+            cerrarModalEjemplo();
+        }
+    </script>
+</body>
+</html>

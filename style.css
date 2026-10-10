@@ -1,0 +1,353 @@
+
+:root {
+    --color-fondo: #f4e3cf;
+    --color-tarjeta: #fbf3e8;
+    --color-primario: #d27d46;
+    --color-primario-hover: #bc6a36;
+    --color-texto: #4a3525;
+    --color-texto-suave: #7a6352;
+    --color-borde: #e3ccb4;
+    --sombra-tarjeta: 0 4px 10px rgba(74, 53, 37, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.barra_superior_rol {
+    background-color: #d88e59;
+    padding: 10px 16px;
+    display: flex;
+    justify-content: center;
+}
+
+.contenedor_selector_rol {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.boton_rol {
+    background: rgba(255, 255, 255, 0.25);
+    border: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.boton_rol.activo {
+    background: #fff;
+    color: var(--color-primario);
+}
+
+
+.encabezado_marca {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+}
+
+.titulo_marca {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.icono_logo, .icono_marca {
+    font-size: 1.8rem;
+}
+
+
+.barra_navegacion {
+    background-color: #e8c9a7;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.barra_navegacion.oculto {
+    display: none;
+}
+
+.lista_menu {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.boton_menu {
+    background: none;
+    border: none;
+    color: var(--color-texto);
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.boton_menu:hover, .boton_menu.activo {
+    background-color: var(--color-primario);
+    color: #fff;
+}
+
+
+.contenedor_principal {
+    flex: 1;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+.seccion_contenido.oculto {
+    display: none;
+}
+
+.seccion_contenido.activo {
+    display: block;
+}
+
+.encabezado_seccion {
+    margin-bottom: 25px;
+}
+
+.titulo_seccion {
+    font-size: 1.7rem;
+    margin-bottom: 5px;
+}
+
+.descripcion_seccion {
+    color: var(--color-texto-suave);
+}
+
+.grilla_cabanas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.tarjeta_cabana {
+    background-color: var(--color-tarjeta);
+    border-radius: 12px;
+    border: 1px solid var(--color-borde);
+    box-shadow: var(--sombra-tarjeta);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.imagen_ejemplo {
+    height: 150px;
+    background-color: #e5d1bc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-texto-suave);
+    font-weight: 600;
+}
+
+.cuerpo_tarjeta {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.titulo_cabana {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+
+.texto_ejemplo {
+    color: var(--color-texto-suave);
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    flex: 1;
+}
+
+.boton_ver, .boton_primario {
+    background-color: var(--color-primario);
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.boton_ver:hover, .boton_primario:hover {
+    background-color: var(--color-primario-hover);
+}
+
+
+.caja_tabla, .caja_ejemplo, .caja_formulario {
+    background-color: var(--color-tarjeta);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid var(--color-borde);
+    box-shadow: var(--sombra-tarjeta);
+}
+
+.tabla_ejemplo {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.tabla_ejemplo th, .tabla_ejemplo td {
+    padding: 12px;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.tabla_ejemplo th {
+    background-color: rgba(210, 125, 70, 0.08);
+}
+
+.insignia {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.insignia_verde { background: #d4edda; color: #155724; }
+.insignia_amarilla { background: #fff3cd; color: #856404; }
+.insignia_roja { background: #f8d7da; color: #721c24; }
+
+
+.grilla_metricas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.tarjeta_metrica {
+    background-color: var(--color-tarjeta);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--color-borde);
+    box-shadow: var(--sombra-tarjeta);
+}
+
+.valor_metrica {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-primario);
+    margin-top: 10px;
+}
+
+
+.campo_grupo {
+    margin-bottom: 15px;
+}
+
+.campo_grupo label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.campo_entrada, .campo_textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--color-borde);
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.campo_textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+
+.modal_fondo.oculto {
+    display: none;
+}
+
+.modal_fondo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal_caja {
+    background-color: var(--color-tarjeta);
+    padding: 25px;
+    border-radius: 12px;
+    max-width: 450px;
+    width: 100%;
+    position: relative;
+    border: 1px solid var(--color-borde);
+}
+
+.modal_cerrar {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.imagen_ejemplo_modal {
+    height: 120px;
+    background-color: #e5d1bc;
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    color: var(--color-texto-suave);
+    font-weight: 600;
+}
+
+.modal_descripcion_texto {
+    color: var(--color-texto-suave);
+    margin-bottom: 20px;
+}
+
+.modal_acciones {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.pie_pagina {
+    background-color: #c9936c;
+    color: #fff;
+    text-align: center;
+    padding: 18px;
+    margin-top: auto;
+    font-size: 0.9rem;
+}
