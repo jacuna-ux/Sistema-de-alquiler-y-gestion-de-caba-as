@@ -3,138 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cabañas Anda Collo - Plantilla de Ejemplo</title>
+    <title>Cabañas Anda Collo - Pehuen Co</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="sin_sesion">
 
-    <!-- BARRA SUPERIOR PARA CAMBIAR ENTRE VISTA CLIENTE Y VISTA ENCARGADO -->
     <header class="barra_superior_rol">
         <div class="contenedor_selector_rol">
-            <span>Vista de Ejemplo:</span>
-            <button id="boton_modo_cliente" class="boton_rol activo" onclick="activarModo('cliente')">Modo Cliente</button>
-            <button id="boton_modo_encargado" class="boton_rol" onclick="activarModo('encargado')">Modo Encargado / Administrador</button>
+            <span id="texto_usuario">Hola</span>
+            <button class="boton_rol" data-accion="cerrarSesion">Cerrar sesión</button>
         </div>
     </header>
 
-    <!-- ENCABEZADO DE LA PAGINA -->
     <header class="encabezado_marca">
         <div class="icono_logo">🏠🌲</div>
         <h1 class="titulo_marca">Cabañas Anda Collo</h1>
         <div class="icono_marca">☀️🌊</div>
     </header>
 
-    <!-- NAVEGACION DE LA VISTA DE CLIENTE -->
-    <nav id="navegacion_cliente" class="barra_navegacion">
+    <nav id="navegacion_inicio" class="barra_navegacion barra_inicio">
         <ul class="lista_menu">
-            <li><button class="boton_menu activo" onclick="mostrarSeccion('cliente_seccion_inicio', this)">Inicio</button></li>
-            <li><button class="boton_menu" onclick="mostrarSeccion('cliente_seccion_cabanas', this)">Cabañas</button></li>
-            <li><button class="boton_menu" onclick="mostrarSeccion('cliente_seccion_mis_reservas', this)">Mis Reservas</button></li>
-            <li><button class="boton_menu" onclick="mostrarSeccion('cliente_seccion_mis_pagos', this)">Mis Pagos</button></li>
-            <li><button class="boton_menu" onclick="mostrarSeccion('cliente_seccion_contacto', this)">Contacto</button></li>
+            <li><button class="boton_menu" data-accion="irAInicio" data-destino="pantalla_inicio">Inicio</button></li>
+            <li><button class="boton_menu" data-accion="irAInicio" data-destino="inicio_cabanas">Cabañas</button></li>
+            <li><button class="boton_menu" data-accion="irAInicio" data-destino="inicio_pasos">Cómo reservar</button></li>
+            <li><button class="boton_menu" data-accion="irALogin" data-registro="false">Ingresar</button></li>
+            <li><button class="boton_menu" data-accion="irALogin" data-registro="true">Crear cuenta</button></li>
         </ul>
     </nav>
 
-    <!-- NAVEGACION DE LA VISTA DE ENCARGADO -->
+    <section id="pantalla_inicio" class="pantalla_inicio">
+        <div class="portada">
+            <h2 class="portada_titulo">Tu descanso a pocas cuadras del mar</h2>
+            <p class="portada_texto">Seis cabañas en Pehuen Co para escaparte de a dos o con toda la familia. Mirá qué cabañas hay libres, reservá y seguí tus pagos desde acá.</p>
+            <div class="portada_botones">
+                <button id="inicio_ingresar" class="boton_primario boton_grande" data-accion="irALogin" data-registro="false">Ingresar</button>
+                <button id="inicio_registro" class="boton_secundario boton_grande" data-accion="irALogin" data-registro="true">Crear cuenta</button>
+            </div>
+        </div>
+
+        <div class="inicio_contenido">
+            <div class="grilla_destacados">
+                <div class="tarjeta_metrica">
+                    <h4>Para 2 a 6 personas</h4>
+                    <p class="texto_ejemplo">Desde una casa alpina chica para dos hasta una cabaña para seis, con pileta exclusiva en La Delfina.</p>
+                </div>
+                <div class="tarjeta_metrica">
+                    <h4>Cerca del mar</h4>
+                    <p class="texto_ejemplo">La mayoría de las cabañas están a 4 o 5 cuadras de la playa, dentro del mismo predio.</p>
+                </div>
+                <div class="tarjeta_metrica">
+                    <h4>Todo para quedarte</h4>
+                    <p class="texto_ejemplo">Cocina con vajilla completa, TV y aire acondicionado en todas las cabañas.</p>
+                </div>
+            </div>
+
+            <div id="inicio_cabanas" class="encabezado_seccion">
+                <h2 class="titulo_seccion">Nuestras cabañas</h2>
+                <p class="descripcion_seccion">Tocá "Ver" para conocer cada una. Para reservar necesitás ingresar.</p>
+            </div>
+            <div id="inicio_grilla_cabanas" class="grilla_cabanas"></div>
+
+            <div id="inicio_pasos" class="encabezado_seccion">
+                <h2 class="titulo_seccion">Cómo reservar</h2>
+            </div>
+            <ol class="pasos_reserva">
+                <li><strong>Creá tu cuenta.</strong> Con tu nombre, DNI y un usuario.</li>
+                <li><strong>Elegí cabaña y fechas.</strong> El sistema te muestra cuáles están libres.</li>
+                <li><strong>Reservá.</strong> Tu reserva queda pendiente hasta que se pague la seña, y la encargada la confirma al registrar el pago.</li>
+            </ol>
+        </div>
+    </section>
+
+    <section class="pantalla_login">
+        <div class="caja_formulario caja_login">
+            <button type="button" class="boton_enlace boton_volver" data-accion="volverAInicio">← Volver al inicio</button>
+            <h2 class="titulo_seccion" id="login_titulo">Ingresar</h2>
+            <p class="descripcion_seccion" id="login_descripcion">Entrá con tu usuario para reservar o administrar las cabañas.</p>
+
+            <form id="form_login" class="formulario_vertical" data-envio="enviarLogin">
+                <div class="campo_grupo">
+                    <label for="login_usuario">Usuario</label>
+                    <input id="login_usuario" class="campo_entrada" autocomplete="username" required>
+                </div>
+                <div class="campo_grupo">
+                    <label for="login_clave">Contraseña</label>
+                    <input id="login_clave" type="password" class="campo_entrada" autocomplete="current-password" required>
+                </div>
+                <p id="login_error" class="mensaje_error oculto"></p>
+                <button type="submit" class="boton_primario">Ingresar</button>
+                <button type="button" class="boton_enlace" data-accion="alternarRegistro" data-registro="true">¿No tenés cuenta? Crear cuenta de cliente</button>
+            </form>
+
+            <form id="form_registro" class="formulario_vertical oculto" data-envio="enviarRegistro">
+                <div class="fila_campos">
+                    <div class="campo_grupo">
+                        <label for="reg_nombre">Nombre</label>
+                        <input id="reg_nombre" class="campo_entrada" required>
+                    </div>
+                    <div class="campo_grupo">
+                        <label for="reg_apellido">Apellido</label>
+                        <input id="reg_apellido" class="campo_entrada" required>
+                    </div>
+                </div>
+                <div class="fila_campos">
+                    <div class="campo_grupo">
+                        <label for="reg_dni">DNI (sin puntos)</label>
+                        <input id="reg_dni" class="campo_entrada" inputmode="numeric" required>
+                    </div>
+                    <div class="campo_grupo">
+                        <label for="reg_telefono">Teléfono</label>
+                        <input id="reg_telefono" class="campo_entrada" inputmode="tel">
+                    </div>
+                </div>
+                <div class="campo_grupo">
+                    <label for="reg_email">Email</label>
+                    <input id="reg_email" type="email" class="campo_entrada">
+                </div>
+                <div class="fila_campos">
+                    <div class="campo_grupo">
+                        <label for="reg_usuario">Usuario</label>
+                        <input id="reg_usuario" class="campo_entrada" autocomplete="username" required>
+                    </div>
+                    <div class="campo_grupo">
+                        <label for="reg_clave">Contraseña (mínimo 6)</label>
+                        <input id="reg_clave" type="password" class="campo_entrada" autocomplete="new-password" minlength="6" required>
+                    </div>
+                </div>
+                <p id="registro_error" class="mensaje_error oculto"></p>
+                <button type="submit" class="boton_primario">Crear cuenta</button>
+                <button type="button" class="boton_enlace" data-accion="alternarRegistro" data-registro="false">Ya tengo cuenta, volver a ingresar</button>
+            </form>
+        </div>
+    </section>
+
+    <nav id="navegacion_cliente" class="barra_navegacion oculto">
+        <ul class="lista_menu">
+            <li><button class="boton_menu activo" data-accion="mostrarSeccion" data-seccion="cliente_seccion_inicio">Inicio</button></li>
+            <li><button class="boton_menu" data-accion="mostrarSeccion" data-seccion="cliente_seccion_cabanas">Cabañas</button></li>
+            <li><button class="boton_menu" data-accion="mostrarSeccion" data-seccion="cliente_seccion_mis_reservas">Mis Reservas</button></li>
+            <li><button class="boton_menu" data-accion="mostrarSeccion" data-seccion="cliente_seccion_mis_pagos">Mis Pagos</button></li>
+            <li><button class="boton_menu" data-accion="mostrarSeccion" data-seccion="cliente_seccion_contacto">Contacto</button></li>
+        </ul>
+    </nav>
+
     <nav id="navegacion_encargado" class="barra_navegacion oculto">
         <ul class="lista_menu">
-            <li><button class="boton_menu activo" onclick="mostrarSeccion('encargado_seccion_inicio', this)">Inicio</button></li>
-            <li><button class="boton_menu" onclick="mostrarSeccion('encargado_seccion_reservas', this)">Reservas (Sistema)</button></li>
-            <li><button class="boton_menu" onclick="mostrarSeccion('encargado_seccion_clientes', this)">Clientes</button></li>
-            <li><button class="boton_menu" onclick="mostrarSeccion('encargado_seccion_cabanas', this)">Cabañas</button></li>
-            <li><button class="boton_menu" onclick="mostrarSeccion('encargado_seccion_pagos', this)">Pagos (General)</button></li>
-            <li><button class="boton_menu" onclick="mostrarSeccion('encargado_seccion_reportes', this)">Reportes</button></li>
+            <li><button class="boton_menu activo" data-accion="mostrarSeccion" data-seccion="encargado_seccion_inicio">Inicio</button></li>
+            <li><button class="boton_menu" data-accion="mostrarSeccion" data-seccion="encargado_seccion_reservas">Reservas (Sistema)</button></li>
+            <li><button class="boton_menu" data-accion="mostrarSeccion" data-seccion="encargado_seccion_clientes">Clientes</button></li>
+            <li><button class="boton_menu" data-accion="mostrarSeccion" data-seccion="encargado_seccion_cabanas">Cabañas</button></li>
+            <li><button class="boton_menu" data-accion="mostrarSeccion" data-seccion="encargado_seccion_pagos">Pagos (General)</button></li>
+            <li><button class="boton_menu" data-accion="mostrarSeccion" data-seccion="encargado_seccion_reportes">Reportes</button></li>
         </ul>
     </nav>
-    
+
     <main class="contenedor_principal">
 
-        <!-- CLIENTE: INICIO -->
-        <section id="cliente_seccion_inicio" class="seccion_contenido activo">
+        <section id="cliente_seccion_inicio" class="seccion_contenido oculto">
             <div class="encabezado_seccion">
                 <h2 class="titulo_seccion">Nuestras cabañas</h2>
-                <p class="descripcion_seccion">Disfrutá de la tranquilidad y la naturaleza en nuestras cabañas (Ejemplo de plantilla).</p>
+                <p class="descripcion_seccion">Disfrutá de la tranquilidad y la naturaleza en nuestras cabañas.</p>
             </div>
-
-            <div class="grilla_cabanas">
-                <!-- Tarjeta Cabaña 1 -->
-                <div class="tarjeta_cabana">
-                    <div class="imagen_ejemplo">Imagen de Ejemplo</div>
-                    <div class="cuerpo_tarjeta">
-                        <h3 class="titulo_cabana">Cabaña 1</h3>
-                        <p class="texto_ejemplo">Descripción de ejemplo para la Cabaña 1.</p>
-                        <button class="boton_ver" onclick="abrirModalEjemplo('Cabaña 1', 'Descripción detallada de ejemplo para la Cabaña 1. Muestra de comodidades y características generales.')">Ver</button>
-                    </div>
-                </div>
-
-                <!-- Tarjeta Cabaña 2 -->
-                <div class="tarjeta_cabana">
-                    <div class="imagen_ejemplo">Imagen de Ejemplo</div>
-                    <div class="cuerpo_tarjeta">
-                        <h3 class="titulo_cabana">Cabaña 2</h3>
-                        <p class="texto_ejemplo">Descripción de ejemplo para la Cabaña 2.</p>
-                        <button class="boton_ver" onclick="abrirModalEjemplo('Cabaña 2', 'Descripción detallada de ejemplo para la Cabaña 2. Muestra de comodidades y características generales.')">Ver</button>
-                    </div>
-                </div>
-
-                <!-- Tarjeta Cabaña 3 -->
-                <div class="tarjeta_cabana">
-                    <div class="imagen_ejemplo">Imagen de Ejemplo</div>
-                    <div class="cuerpo_tarjeta">
-                        <h3 class="titulo_cabana">Cabaña 3</h3>
-                        <p class="texto_ejemplo">Descripción de ejemplo para la Cabaña 3.</p>
-                        <button class="boton_ver" onclick="abrirModalEjemplo('Cabaña 3', 'Descripción detallada de ejemplo para la Cabaña 3. Muestra de comodidades y características generales.')">Ver</button>
-                    </div>
-                </div>
-
-                <!-- Tarjeta Cabaña 4 -->
-                <div class="tarjeta_cabana">
-                    <div class="imagen_ejemplo">Imagen de Ejemplo</div>
-                    <div class="cuerpo_tarjeta">
-                        <h3 class="titulo_cabana">Cabaña 4</h3>
-                        <p class="texto_ejemplo">Descripción de ejemplo para la Cabaña 4.</p>
-                        <button class="boton_ver" onclick="abrirModalEjemplo('Cabaña 4', 'Descripción detallada de ejemplo para la Cabaña 4. Muestra de comodidades y características generales.')">Ver</button>
-                    </div>
-                </div>
-
-                <!-- Tarjeta Cabaña 5 -->
-                <div class="tarjeta_cabana">
-                    <div class="imagen_ejemplo">Imagen de Ejemplo</div>
-                    <div class="cuerpo_tarjeta">
-                        <h3 class="titulo_cabana">Cabaña 5</h3>
-                        <p class="texto_ejemplo">Descripción de ejemplo para la Cabaña 5.</p>
-                        <button class="boton_ver" onclick="abrirModalEjemplo('Cabaña 5', 'Descripción detallada de ejemplo para la Cabaña 5. Muestra de comodidades y características generales.')">Ver</button>
-                    </div>
-                </div>
-
-                <!-- Tarjeta Cabaña 6 -->
-                <div class="tarjeta_cabana">
-                    <div class="imagen_ejemplo">Imagen de Ejemplo</div>
-                    <div class="cuerpo_tarjeta">
-                        <h3 class="titulo_cabana">Cabaña 6</h3>
-                        <p class="texto_ejemplo">Descripción de ejemplo para la Cabaña 6.</p>
-                        <button class="boton_ver" onclick="abrirModalEjemplo('Cabaña 6', 'Descripción detallada de ejemplo para la Cabaña 6. Muestra de comodidades y características generales.')">Ver</button>
-                    </div>
-                </div>
-            </div>
+            <div id="cliente_grilla_cabanas" class="grilla_cabanas"></div>
         </section>
 
-        <!-- CLIENTE: CABAÑAS -->
         <section id="cliente_seccion_cabanas" class="seccion_contenido oculto">
             <div class="encabezado_seccion">
-                <h2 class="titulo_seccion">Catálogo de Cabañas (Ejemplo)</h2>
-                <p class="descripcion_seccion">Vista completa de unidades disponibles en el sistema.</p>
+                <h2 class="titulo_seccion">Catálogo de Cabañas</h2>
+                <p class="descripcion_seccion">Elegí las fechas y mirá qué cabañas están libres.</p>
             </div>
-            <div class="caja_ejemplo">
-                <p class="texto_ejemplo">Muestra conceptual del catálogo para el cliente.</p>
+            <div class="caja_formulario">
+                <form class="barra_filtros" data-envio="buscarDisponibilidad">
+                    <div class="campo_grupo">
+                        <label for="disp_ingreso">Ingreso</label>
+                        <input id="disp_ingreso" type="date" class="campo_entrada" required>
+                    </div>
+                    <div class="campo_grupo">
+                        <label for="disp_egreso">Egreso</label>
+                        <input id="disp_egreso" type="date" class="campo_entrada" required>
+                    </div>
+                    <button type="submit" class="boton_primario">Ver disponibilidad</button>
+                </form>
+                <p id="disp_error" class="mensaje_error oculto"></p>
             </div>
+            <div id="cliente_disponibilidad" class="grilla_cabanas separado"></div>
         </section>
 
-        <!-- CLIENTE: MIS RESERVAS -->
         <section id="cliente_seccion_mis_reservas" class="seccion_contenido oculto">
             <div class="encabezado_seccion">
                 <h2 class="titulo_seccion">Mis Reservas</h2>
-                <p class="descripcion_seccion">Muestra de las reservas personales del cliente.</p>
+                <p class="descripcion_seccion">Tus reservas. Quedan pendientes hasta que se paga la seña.</p>
             </div>
             <div class="caja_tabla">
                 <table class="tabla_ejemplo">
@@ -144,34 +202,20 @@
                             <th>Cabaña</th>
                             <th>Ingreso</th>
                             <th>Salida</th>
+                            <th>Total</th>
                             <th>Estado</th>
+                            <th></th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>#001</td>
-                            <td>Cabaña 1</td>
-                            <td>DD/MM/AAAA</td>
-                            <td>DD/MM/AAAA</td>
-                            <td><span class="insignia insignia_verde">Estado de Ejemplo</span></td>
-                        </tr>
-                        <tr>
-                            <td>#002</td>
-                            <td>Cabaña 2</td>
-                            <td>DD/MM/AAAA</td>
-                            <td>DD/MM/AAAA</td>
-                            <td><span class="insignia insignia_amarilla">Estado de Ejemplo</span></td>
-                        </tr>
-                    </tbody>
+                    <tbody id="cliente_tabla_reservas"></tbody>
                 </table>
             </div>
         </section>
 
-        <!-- CLIENTE: MIS PAGOS -->
         <section id="cliente_seccion_mis_pagos" class="seccion_contenido oculto">
             <div class="encabezado_seccion">
                 <h2 class="titulo_seccion">Mis Pagos</h2>
-                <p class="descripcion_seccion">Muestra de comprobantes y estado de pagos personales del cliente.</p>
+                <p class="descripcion_seccion">Comprobantes y pagos registrados a tu nombre.</p>
             </div>
             <div class="caja_tabla">
                 <table class="tabla_ejemplo">
@@ -183,72 +227,111 @@
                             <th>Fecha</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>#PAGO-01</td>
-                            <td>Ejemplo de pago de reserva</td>
-                            <td>$ XXX.XXX</td>
-                            <td>DD/MM/AAAA</td>
-                        </tr>
-                    </tbody>
+                    <tbody id="cliente_tabla_pagos"></tbody>
                 </table>
             </div>
         </section>
 
-        <!-- CLIENTE: CONTACTO -->
         <section id="cliente_seccion_contacto" class="seccion_contenido oculto">
             <div class="encabezado_seccion">
                 <h2 class="titulo_seccion">Contacto</h2>
-                <p class="descripcion_seccion">Formulario de ejemplo de consulta.</p>
+                <p class="descripcion_seccion">Formulario de consulta (de muestra: el sistema no guarda los mensajes).</p>
             </div>
             <div class="caja_formulario">
                 <div class="campo_grupo">
-                    <label>Nombre de ejemplo:</label>
+                    <label>Nombre:</label>
                     <input type="text" placeholder="Tu nombre..." class="campo_entrada">
                 </div>
                 <div class="campo_grupo">
-                    <label>Correo de ejemplo:</label>
+                    <label>Correo:</label>
                     <input type="email" placeholder="correo@ejemplo.com" class="campo_entrada">
                 </div>
                 <div class="campo_grupo">
-                    <label>Mensaje de ejemplo:</label>
-                    <textarea placeholder="Mensaje de ejemplo..." class="campo_textarea"></textarea>
+                    <label>Mensaje:</label>
+                    <textarea placeholder="Escribí tu consulta..." class="campo_textarea"></textarea>
                 </div>
-                <button class="boton_primario" onclick="alert('Formulario de ejemplo enviado.')">Enviar Mensaje</button>
+                <button class="boton_primario" data-accion="enviarContacto">Enviar Mensaje</button>
             </div>
         </section>
 
-        <!-- ==========================================
-             SECCIONES VISTA ENCARGADO / ADMINISTRADOR
-        =========================================== -->
-
-        <!-- ENCARGADO: INICIO -->
         <section id="encargado_seccion_inicio" class="seccion_contenido oculto">
             <div class="encabezado_seccion">
                 <h2 class="titulo_seccion">Panel de Control (Encargado)</h2>
-                <p class="descripcion_seccion">Indicadores generales del complejo (Ejemplo ilustrativo).</p>
+                <p class="descripcion_seccion">Indicadores generales del complejo.</p>
             </div>
             <div class="grilla_metricas">
                 <div class="tarjeta_metrica">
-                    <h4>Cabañas Ocupadas</h4>
-                    <p class="valor_metrica">X / X</p>
+                    <h4>Cabañas Ocupadas esta noche</h4>
+                    <p class="valor_metrica" id="metrica_ocupadas">-</p>
                 </div>
                 <div class="tarjeta_metrica">
                     <h4>Reservas Totales</h4>
-                    <p class="valor_metrica">XX</p>
+                    <p class="valor_metrica" id="metrica_reservas">-</p>
+                </div>
+                <div class="tarjeta_metrica">
+                    <h4>Reservas pendientes de seña</h4>
+                    <p class="valor_metrica" id="metrica_pendientes">-</p>
                 </div>
                 <div class="tarjeta_metrica">
                     <h4>Pagos Registrados</h4>
-                    <p class="valor_metrica">$ XXX.XXX</p>
+                    <p class="valor_metrica" id="metrica_pagos">-</p>
                 </div>
             </div>
         </section>
 
-        <!-- ENCARGADO: RESERVAS -->
         <section id="encargado_seccion_reservas" class="seccion_contenido oculto">
             <div class="encabezado_seccion">
                 <h2 class="titulo_seccion">Todas las Reservas del Sistema</h2>
-                <p class="descripcion_seccion">Vista de administración general de reservas de todos los clientes.</p>
+                <p class="descripcion_seccion">Alta, cambio de fechas, cancelación y cobro de reservas.</p>
+            </div>
+            <div class="caja_formulario separado_abajo">
+                <h3 class="subtitulo_caja">Nueva reserva</h3>
+                <form class="barra_filtros" data-envio="crearReservaEncargada">
+                    <div class="campo_grupo">
+                        <label for="nr_cliente">Cliente</label>
+                        <select id="nr_cliente" class="campo_entrada" required></select>
+                    </div>
+                    <div class="campo_grupo">
+                        <label for="nr_cabana">Cabaña</label>
+                        <select id="nr_cabana" class="campo_entrada" required></select>
+                    </div>
+                    <div class="campo_grupo">
+                        <label for="nr_ingreso">Ingreso</label>
+                        <input id="nr_ingreso" type="date" class="campo_entrada" required>
+                    </div>
+                    <div class="campo_grupo">
+                        <label for="nr_egreso">Egreso</label>
+                        <input id="nr_egreso" type="date" class="campo_entrada" required>
+                    </div>
+                    <button type="submit" class="boton_primario">Reservar</button>
+                </form>
+                <p id="nr_error" class="mensaje_error oculto"></p>
+            </div>
+            <div class="caja_formulario separado_abajo">
+                <h3 class="subtitulo_caja">Filtrar reservas</h3>
+                <form id="form_filtro_reservas" class="barra_filtros" data-envio="filtrarReservas">
+                    <div class="campo_grupo">
+                        <label for="fr_estado">Estado</label>
+                        <select id="fr_estado" class="campo_entrada">
+                            <option value="">Todos</option><option>Pendiente</option><option>Confirmada</option><option>Finalizada</option><option>Cancelada</option>
+                        </select>
+                    </div>
+                    <div class="campo_grupo">
+                        <label for="fr_cabana">Cabaña</label>
+                        <select id="fr_cabana" class="campo_entrada"></select>
+                    </div>
+                    <div class="campo_grupo">
+                        <label for="fr_desde">Período desde</label>
+                        <input id="fr_desde" type="date" class="campo_entrada">
+                    </div>
+                    <div class="campo_grupo">
+                        <label for="fr_hasta">Período hasta</label>
+                        <input id="fr_hasta" type="date" class="campo_entrada">
+                    </div>
+                    <button type="submit" class="boton_primario">Filtrar</button>
+                    <button type="button" class="boton_secundario" data-accion="limpiarFiltroReservas">Limpiar</button>
+                </form>
+                <p id="fr_resumen" class="resumen_filtro"></p>
             </div>
             <div class="caja_tabla">
                 <table class="tabla_ejemplo">
@@ -259,70 +342,81 @@
                             <th>Cabaña</th>
                             <th>Ingreso</th>
                             <th>Salida</th>
+                            <th>Total</th>
                             <th>Estado General</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>#RES-01</td>
-                            <td>Cliente A</td>
-                            <td>Cabaña 1</td>
-                            <td>DD/MM/AAAA</td>
-                            <td>DD/MM/AAAA</td>
-                            <td><span class="insignia insignia_verde">Confirmada</span></td>
-                        </tr>
-                        <tr>
-                            <td>#RES-02</td>
-                            <td>Cliente B</td>
-                            <td>Cabaña 3</td>
-                            <td>DD/MM/AAAA</td>
-                            <td>DD/MM/AAAA</td>
-                            <td><span class="insignia insignia_amarilla">Pendiente</span></td>
-                        </tr>
-                    </tbody>
+                    <tbody id="encargado_tabla_reservas"></tbody>
                 </table>
             </div>
         </section>
 
-        <!-- ENCARGADO: CLIENTES -->
         <section id="encargado_seccion_clientes" class="seccion_contenido oculto">
             <div class="encabezado_seccion">
                 <h2 class="titulo_seccion">Listado de Clientes</h2>
-                <p class="descripcion_seccion">Base de datos de pasajeros registrados en la plataforma.</p>
+                <p class="descripcion_seccion">Pasajeros registrados en la plataforma.</p>
+            </div>
+            <div class="caja_formulario separado_abajo">
+                <h3 class="subtitulo_caja" id="cli_form_titulo">Nuevo cliente</h3>
+                <form id="form_cliente" data-envio="guardarCliente">
+                    <input type="hidden" id="cli_id">
+                    <div class="barra_filtros">
+                        <div class="campo_grupo"><label for="cli_nombre">Nombre</label><input id="cli_nombre" class="campo_entrada" required></div>
+                        <div class="campo_grupo"><label for="cli_apellido">Apellido</label><input id="cli_apellido" class="campo_entrada" required></div>
+                        <div class="campo_grupo"><label for="cli_dni">DNI</label><input id="cli_dni" class="campo_entrada" inputmode="numeric" required></div>
+                        <div class="campo_grupo"><label for="cli_telefono">Teléfono</label><input id="cli_telefono" class="campo_entrada"></div>
+                        <div class="campo_grupo"><label for="cli_email">Email</label><input id="cli_email" type="email" class="campo_entrada"></div>
+                        <div class="campo_grupo"><label for="cli_clave">Contraseña (opcional)</label><input id="cli_clave" type="password" class="campo_entrada" autocomplete="new-password"></div>
+                    </div>
+                    <p id="cli_error" class="mensaje_error oculto"></p>
+                    <div class="acciones_form">
+                        <button type="submit" class="boton_primario" id="cli_guardar">Guardar cliente</button>
+                        <button type="button" class="boton_secundario oculto" id="cli_cancelar" data-accion="limpiarFormCliente">Cancelar edición</button>
+                    </div>
+                </form>
             </div>
             <div class="caja_tabla">
                 <table class="tabla_ejemplo">
                     <thead>
                         <tr>
                             <th>Nombre</th>
+                            <th>DNI</th>
                             <th>Teléfono</th>
                             <th>Email</th>
                             <th>Reservas</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Cliente A</td>
-                            <td>0000-0000</td>
-                            <td>clienteA@ejemplo.com</td>
-                            <td>X</td>
-                        </tr>
-                        <tr>
-                            <td>Cliente B</td>
-                            <td>0000-0000</td>
-                            <td>clienteB@ejemplo.com</td>
-                            <td>X</td>
-                        </tr>
-                    </tbody>
+                    <tbody id="encargado_tabla_clientes"></tbody>
                 </table>
             </div>
         </section>
 
-        <!-- ENCARGADO: CABAÑAS -->
         <section id="encargado_seccion_cabanas" class="seccion_contenido oculto">
             <div class="encabezado_seccion">
                 <h2 class="titulo_seccion">Administración de Cabañas</h2>
-                <p class="descripcion_seccion">Estado operativo y control general de cada unidad.</p>
+                <p class="descripcion_seccion">Alta, modificación y baja de cada unidad, con su estado de esta noche.</p>
+            </div>
+            <div class="caja_formulario separado_abajo">
+                <h3 class="subtitulo_caja" id="cab_form_titulo">Nueva cabaña</h3>
+                <form id="form_cabana" data-envio="guardarCabana">
+                    <input type="hidden" id="cab_id">
+                    <div class="barra_filtros">
+                        <div class="campo_grupo"><label for="cab_nombre">Nombre</label><input id="cab_nombre" class="campo_entrada" required></div>
+                        <div class="campo_grupo"><label for="cab_capacidad">Capacidad (personas)</label><input id="cab_capacidad" type="number" min="1" class="campo_entrada" required></div>
+                        <div class="campo_grupo"><label for="cab_precio">Precio por noche ($)</label><input id="cab_precio" type="number" min="0" class="campo_entrada" required></div>
+                    </div>
+                    <div class="campo_grupo">
+                        <label for="cab_descripcion">Descripción y equipamiento</label>
+                        <textarea id="cab_descripcion" class="campo_textarea" maxlength="500"></textarea>
+                    </div>
+                    <p id="cab_error" class="mensaje_error oculto"></p>
+                    <div class="acciones_form">
+                        <button type="submit" class="boton_primario">Guardar cabaña</button>
+                        <button type="button" class="boton_secundario oculto" id="cab_cancelar" data-accion="limpiarFormCabana">Cancelar edición</button>
+                    </div>
+                </form>
             </div>
             <div class="caja_tabla">
                 <table class="tabla_ejemplo">
@@ -330,31 +424,38 @@
                         <tr>
                             <th>Cabaña</th>
                             <th>Capacidad</th>
+                            <th>Precio por noche</th>
                             <th>Estado Actual</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Cabaña 1</td>
-                            <td>X Personas</td>
-                            <td><span class="insignia insignia_verde">Disponible</span></td>
-                        </tr>
-                        <tr>
-                            <td>Cabaña 2</td>
-                            <td>X Personas</td>
-                            <td><span class="insignia insignia_roja">Ocupada</span></td>
-                        </tr>
-                    </tbody>
+                    <tbody id="encargado_tabla_cabanas"></tbody>
                 </table>
             </div>
         </section>
 
-        <!-- ENCARGADO: PAGOS -->
         <section id="encargado_seccion_pagos" class="seccion_contenido oculto">
             <div class="encabezado_seccion">
                 <h2 class="titulo_seccion">Control General de Pagos</h2>
-                <p class="descripcion_seccion">Registro de ingresos e historial contable del complejo.</p>
+                <p class="descripcion_seccion">Registro de ingresos e historial del complejo. Los pagos se cargan desde Reservas.</p>
             </div>
+            <div class="caja_formulario separado_abajo">
+                <h3 class="subtitulo_caja">Filtrar pagos</h3>
+                <form id="form_filtro_pagos" class="barra_filtros" data-envio="filtrarPagos">
+                    <div class="campo_grupo"><label for="fp_desde">Pagados desde</label><input id="fp_desde" type="date" class="campo_entrada"></div>
+                    <div class="campo_grupo"><label for="fp_hasta">Pagados hasta</label><input id="fp_hasta" type="date" class="campo_entrada"></div>
+                    <div class="campo_grupo">
+                        <label for="fp_metodo">Método de pago</label>
+                        <select id="fp_metodo" class="campo_entrada">
+                            <option value="">Todos</option><option>Efectivo</option><option>Transferencia</option><option>Tarjeta</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="boton_primario">Filtrar</button>
+                    <button type="button" class="boton_secundario" data-accion="limpiarFiltroPagos">Limpiar</button>
+                </form>
+                <p id="fp_error" class="mensaje_error oculto"></p>
+            </div>
+            <div id="pagos_resumen" class="grilla_metricas separado_abajo"></div>
             <div class="caja_tabla">
                 <table class="tabla_ejemplo">
                     <thead>
@@ -363,29 +464,30 @@
                             <th>Reserva</th>
                             <th>Cliente</th>
                             <th>Monto</th>
+                            <th>Método</th>
+                            <th>Fecha</th>
+                            <th>Comprobante</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>#PAG-001</td>
-                            <td>#RES-01</td>
-                            <td>Cliente A</td>
-                            <td>$ XXX.XXX</td>
-                        </tr>
-                    </tbody>
+                    <tbody id="encargado_tabla_pagos"></tbody>
                 </table>
             </div>
         </section>
 
-        <!-- ENCARGADO: REPORTES -->
         <section id="encargado_seccion_reportes" class="seccion_contenido oculto">
             <div class="encabezado_seccion">
                 <h2 class="titulo_seccion">Reportes y Estadísticas</h2>
-                <p class="descripcion_seccion">Espacio reservado para métricas del sistema.</p>
+                <p class="descripcion_seccion">Ocupación e ingresos por cabaña en el período elegido.</p>
             </div>
-            <div class="caja_ejemplo">
-                <p class="texto_ejemplo">Sección de reportes de ejemplo.</p>
+            <div class="caja_formulario separado_abajo">
+                <form class="barra_filtros" data-envio="generarReporte">
+                    <div class="campo_grupo"><label for="rep_desde">Desde</label><input id="rep_desde" type="date" class="campo_entrada" required></div>
+                    <div class="campo_grupo"><label for="rep_hasta">Hasta</label><input id="rep_hasta" type="date" class="campo_entrada" required></div>
+                    <button type="submit" class="boton_primario">Generar reporte</button>
+                </form>
+                <p id="rep_error" class="mensaje_error oculto"></p>
             </div>
+            <div id="reporte_resultado"></div>
         </section>
 
     </main>
@@ -396,70 +498,38 @@
 
     <div id="modal_ejemplo" class="modal_fondo oculto">
         <div class="modal_caja">
-            <button class="modal_cerrar" onclick="cerrarModalEjemplo()">&times;</button>
-            <h3 id="modal_titulo" class="modal_titulo">Título de Ejemplo</h3>
-            <div class="imagen_ejemplo_modal">Imagen de Ejemplo</div>
-            <p id="modal_descripcion" class="modal_descripcion_texto">Descripción de ejemplo.</p>
+            <button class="modal_cerrar" data-accion="cerrarModal" aria-label="Cerrar">&times;</button>
+            <h3 id="modal_titulo" class="modal_titulo"></h3>
+            <div class="imagen_ejemplo_modal">Foto de la cabaña</div>
+            <p id="modal_datos" class="modal_datos"></p>
+            <p id="modal_descripcion" class="modal_descripcion_texto"></p>
+            <div class="fila_campos">
+                <div class="campo_grupo"><label for="modal_ingreso">Ingreso</label><input id="modal_ingreso" type="date" class="campo_entrada"></div>
+                <div class="campo_grupo"><label for="modal_egreso">Egreso</label><input id="modal_egreso" type="date" class="campo_entrada"></div>
+            </div>
+            <p id="modal_total" class="modal_datos"></p>
+            <p id="modal_error" class="mensaje_error oculto"></p>
             <div class="modal_acciones">
-                <button class="boton_primario" onclick="ejecutarReservaEjemplo()">Reservar</button>
+                <button id="modal_reservar" class="boton_primario" data-accion="reservarDesdeModal">Reservar</button>
             </div>
         </div>
     </div>
 
-    <!-- script de ejemplo y prueba-->
-    <script>
-        function activarModo(modo) {
-            const btnCliente = document.getElementById('boton_modo_cliente');
-            const btnEncargado = document.getElementById('boton_modo_encargado');
-            const navCliente = document.getElementById('navegacion_cliente');
-            const navEncargado = document.getElementById('navegacion_encargado');
+    <div id="modal_form" class="modal_fondo oculto">
+        <div class="modal_caja">
+            <button class="modal_cerrar" data-accion="cerrarModalForm" aria-label="Cerrar">&times;</button>
+            <h3 id="mf_titulo" class="modal_titulo"></h3>
+            <div id="mf_cuerpo"></div>
+            <p id="mf_error" class="mensaje_error oculto"></p>
+            <div class="modal_acciones">
+                <button class="boton_primario" id="mf_confirmar">Confirmar</button>
+            </div>
+        </div>
+    </div>
 
-            if (modo === 'cliente') {
-                btnCliente.classList.add('activo');
-                btnEncargado.classList.remove('activo');
-                navCliente.classList.remove('oculto');
-                navEncargado.classList.add('oculto');
-                mostrarSeccion('cliente_seccion_inicio', navCliente.querySelector('.boton_menu'));
-            } else {
-                btnEncargado.classList.add('activo');
-                btnCliente.classList.remove('activo');
-                navEncargado.classList.remove('oculto');
-                navCliente.classList.add('oculto');
-                mostrarSeccion('encargado_seccion_inicio', navEncargado.querySelector('.boton_menu'));
-            }
-        }
+    <div id="aviso" class="aviso oculto" role="status"></div>
 
-        function mostrarSeccion(idSeccion, botonPresionado) {
-            const secciones = document.querySelectorAll('.seccion_contenido');
-            secciones.forEach(sec => sec.classList.add('oculto'));
-            secciones.forEach(sec => sec.classList.remove('activo'));
-
-            const seccionDestino = document.getElementById(idSeccion);
-            if (seccionDestino) {
-                seccionDestino.classList.remove('oculto');
-                seccionDestino.classList.add('activo');
-            }
-
-            const menuPadre = botonPresionado.closest('.barra_navegacion');
-            const botones = menuPadre.querySelectorAll('.boton_menu');
-            botones.forEach(btn => btn.classList.remove('activo'));
-            botonPresionado.classList.add('activo');
-        }
-
-        function abrirModalEjemplo(titulo, descripcion) {
-            document.getElementById('modal_titulo').innerText = titulo;
-            document.getElementById('modal_descripcion').innerText = descripcion;
-            document.getElementById('modal_ejemplo').classList.remove('oculto');
-        }
-
-        function cerrarModalEjemplo() {
-            document.getElementById('modal_ejemplo').classList.add('oculto');
-        }
-
-        function ejecutarReservaEjemplo() {
-            alert('Acción de reserva de ejemplo (Sin funcionalidad real).');
-            cerrarModalEjemplo();
-        }
-    </script>
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
